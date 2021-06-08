@@ -1,37 +1,23 @@
-# anatawa12's ForgeGradle 1.2 fork for Gradle 4.4.1+ - example project
+# Forge 1.7.10 example project
 
-This is an example mod using the [fork of ForgeGradle-1.2 made by anatawa12](https://github.com/anatawa12/ForgeGradle-1.2).
-This fork supports Gradle 4.4.1 and later. This example project uses Gradle 5.6.4.
+This is an example mod using the [fork of ForgeGradle-1.2 made by anatawa12](https://github.com/anatawa12/ForgeGradle-1.2), which supports Gradle 4.4.1 and later. This example project uses Gradle 6.4. It can be used as a replacement for Forge's 1.7.10 MDK.
 
 ## How to use this example project
 
-You can download this example project from [here](https://github.com/anatawa12/ForgeGradle-example/archive/master.zip), or use it as a template on Github.
-This project can be used as a replacement for Forge's 1.7.10 MDK.
-
-## How to replace ForgeGradle 1.2. with anatawa12's fork
-Although this example project has some differences to Forge's 1.7.10 MDK, anatawa12's fork of ForgeGradle 1.2 can be used by most projects with only minimal changes to their Gradle build script.
-
-Here is a list of changes to Forge's 1.7.10 MDK Gradle build script, to replace the official ForgeGradle 1.2 plugin with the fork. These changes are likely to work with most projects based on Forge's 1.7.10 MDK.
-
-In the repositories block of the buildscript section, add jcenter, and switch the Forge maven to use HTTPS instead of HTTP:
-```diff
-     repositories {
-         mavenCentral()
-         maven {
-             name = "forge"
--            url = "http://files.minecraftforge.net/maven"
-+            url = "https://files.minecraftforge.net/maven"
-         }
+1. Clone the repo
 ```
-
-Also in the dependencies block of the buildscript section, change the dependency on Forge's official ForgeGradle 1.2 to the fork:
-```diff
-     dependencies {
--        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
-+        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
-+            changing = true
-+        }
-     }
+git clone --single-branch --branch 1.7.10 https://github.com/makamys/forge-example-mod
+cd forge-example-mod
 ```
+2. Edit the metadata (mod ID, etc.) in `gradle.properties`
+3. Run `py init_project.py` to generate the project files. This script automatically substitutes your metadata into the source files, and deletes itself once it's done.
+4. Run `./gradlew setupDecompWorkspace eclipse` (you can use `idea` instead of `eclipse`)
+5. Now you can open the project in your IDE. Don't forget to edit the mod info in `mcmod.info`. Happy coding!
 
-The Gradle wrapper should also be changed to use Gradle 4.4.1 or higher. Currently, the plugin [does not support Gradle 6.x](https://github.com/anatawa12/ForgeGradle-1.2/issues/9), although this may change in the future. As such, the latest version of Gradle this plugin supports is Gradle 5.6.4.
+### Running in Eclipse
+ForgeGradle 1.2 doesn't generate launch configurations for Eclipse. To get them, copy the launch configuration of another mod and correct the paths in them. If this is the first mod in your workspace, you can use the 1.12.2 MDK's project as the seed. Download it, run `gradlew eclipse`, and copy the generated `.launch` files into your project. It's convoluted, but it's the best way I know.
+
+### Tips
+
+* CodeChickenLib is included in the dependencies, so you can get other non-deobfuscated mods running in your dev environment by putting them either in the `libs` directory you create inside this one (you'll have to run `./gradlew eclipse` (or `idea`)  again whenever you change that directory), or in the `mods` folder of your instance.
+* Once you're done, build your project with `./gradlew build`.
