@@ -28,7 +28,7 @@ targetCompatibility = 1.6
 
 apply plugin: 'forge'
 
-version = project.version
+version = project.minecraft_version + "-" + project.version
 group = project.group
 
 minecraft {
@@ -53,13 +53,13 @@ dependencies {
 
 processResources {
     // This will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
+    inputs.property "version", version
     inputs.property "mcversion", project.minecraft.version
 
     // Replace values in only mcmod.info.
     filesMatching('mcmod.info') {
         // Replace version and mcversion.
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'modid':project.modid, 'version':version, 'mcversion':project.minecraft.version
     }
 }
 
