@@ -39,6 +39,15 @@ repositories {
 		name = "chickenbones"
 		url = "http://chickenbones.net/maven/"
 	}
+    maven {
+        name = 'sponge'
+        url = 'https://repo.spongepowered.org/maven/'
+    }
+}
+
+configurations {
+    embed
+    compile.extendsFrom(embed)
 }
 
 dependencies {
@@ -49,6 +58,8 @@ dependencies {
 
 	compile "codechicken:CodeChickenLib:1.7.10-1.1.3.140:dev"
 	compile "codechicken:CodeChickenCore:1.7.10-1.0.7.47:dev"
+	
+	embed 'org.spongepowered:mixin:0.7+'
 
     // real examples
     //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
@@ -58,6 +69,45 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 }
+
+def outRefMapFile = tasks.compileJava.temporaryDir.toString() + "/" + project.modid + ".mixin.refmap.json" // 1.7.10 mixin compatibility
+
+jar {
+    manifest {
+        attributes (
+            'MixinConfigs': project.modid + '.mixin.json',
+            'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+            'TweakOrder': 0,
+            
+            // If these two are not set, Forge will not detect the mod, it will only run the mixins
+            'FMLCorePluginContainsFMLMod': 'true',
+            'ForceLoadAsMod': 'true'
+        )
+    }
+
+    from(sourceSets.main.output);
+    
+    from outRefMapFile; // 1.7.10 mixin compatibility
+
+    // embed libraries in jar
+    from configurations.embed.collect {
+        exclude '**/LICENSE.txt'
+        it.isDirectory() ? it : zipTree(it)
+    }
+}
+
+// 1.7.10 mixin compatibility
+def outSrgFile = tasks.compileJava.temporaryDir.toString() + "/outSrg.srg"
+
+afterEvaluate {
+    tasks.compileJava.options.compilerArgs += ["-AreobfSrgFile=${tasks.reobf.srg}", "-AoutSrgFile=${outSrgFile}", "-AoutRefMapFile=${outRefMapFile}"];
+}
+
+reobf {
+    addExtraSrgFile outSrgFile
+}
+// end of mixin stuff
+
 
 processResources {
     // This will ensure that this task is redone when the versions change.
