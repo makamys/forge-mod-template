@@ -11,9 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath ('com.anatawa12.forge:ForgeGradle:1.2-1.0.+') {
-            changing = true
-        }
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
@@ -84,27 +82,4 @@ task devJar(type: Jar) {
 artifacts {
     archives sourcesJar
     archives devJar
-}
-
-// This block configures any maven publications you want to make.
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-        // Add any other artifacts here that you would like to publish!
-            artifact(jar) {
-                builtBy build
-            }
-            artifact(sourcesJar) {
-                builtBy sourcesJar
-            }
-            artifact(devJar) {
-                builtBy devJar
-            }
-        }
-    }
-
-    // This block selects the repositories you want to publish to.
-    repositories {
-        // Add the repositories you want to publish to here.
-    }
 }

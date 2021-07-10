@@ -1,6 +1,6 @@
 # Forge 1.7.10 example project
 
-This is an example mod using the [fork of ForgeGradle-1.2 made by anatawa12](https://github.com/anatawa12/ForgeGradle-1.2), which supports Gradle 4.4.1 and later. This example project uses Gradle 6.4. It can be used as a replacement for Forge's 1.7.10 MDK.
+This is an example Forge 1.7.10 mod template that can be used to quickstart your modding projects.
 
 ## How to use this example project
 
