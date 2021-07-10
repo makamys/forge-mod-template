@@ -10,7 +10,7 @@ git clone --single-branch --branch 1.7.10 https://github.com/makamys/forge-examp
 cd forge-example-mod
 ```
 2. Edit the metadata (mod ID, etc.) in `gradle.properties`
-3. Run `py init_project.py` to generate the project files. This script automatically substitutes your metadata into the source files, and deletes itself once it's done.
+3. Run `py init_project.py` to generate the project files. This script automatically substitutes your metadata into the source files, and deletes itself and this readme once it's done.
 4. Run `./gradlew setupDecompWorkspace eclipse` (you can use `idea` instead of `eclipse`)
 5. Now you can open the project in your IDE. Don't forget to edit the mod info in `mcmod.info`. Happy coding!
 

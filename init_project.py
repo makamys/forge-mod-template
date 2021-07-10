@@ -17,3 +17,4 @@ open(source_path, "w", encoding="utf8").write(source)
 
 os.remove(template_path)
 os.remove(sys.argv[0])
+os.remove("README.md")
