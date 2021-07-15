@@ -22,10 +22,6 @@ plugins {
     id 'maven-publish'
 }
 
-// These settings allow you to choose what version of Java you want to be compatible with. Forge 1.7.10 runs on Java 6 to 8.
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
-
 apply plugin: 'forge'
 
 version = project.minecraft_version + "-" + project.version
@@ -35,6 +31,10 @@ minecraft {
     version = project.minecraft_version + "-" + project.forge_version
     runDir = "run"
 }
+
+// These settings allow you to choose what version of Java you want to be compatible with. Forge 1.7.10 runs on Java 6 to 8.
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 dependencies {
     // you may put jars on which you depend on in ./libs
