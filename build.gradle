@@ -28,6 +28,7 @@ group = project.group
 minecraft {
     version = project.minecraft_version + "-" + project.forge_version
     runDir = "run"
+	replace '@VERSION', project.version
 }
 
 // These settings allow you to choose what version of Java you want to be compatible with. Forge 1.7.10 runs on Java 6 to 8.
