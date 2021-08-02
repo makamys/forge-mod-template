@@ -22,9 +22,8 @@ plugins {
 
 apply plugin: 'forge'
 
-version = project.minecraft_version + "-" + project.version
 group = project.group
-
+archivesBaseName = "$project.modid-$project.minecraft_version"
 minecraft {
     version = project.minecraft_version + "-" + project.forge_version
     runDir = "run"
