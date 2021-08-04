@@ -5,6 +5,6 @@
     "refmap": "${modid}.mixin.refmap.json",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
-    	
+        "ExampleMixin"
     ]
 }

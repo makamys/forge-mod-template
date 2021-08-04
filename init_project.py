@@ -17,11 +17,17 @@ def apply_template(template_path, source_path_str):
     
     os.remove(template_path)
 
-apply_template("src/main/java/Template.java", "src/main/java/" + props["package"].replace(".", "/") + "/" + props["mainclass"] + ".java")
-if props["enable_mixin"].lower() == "true":
-    apply_template("src/main/resources/template.mixin.json", "src/main/resources/" + props["modid"] + ".mixin.json")
-else:
-    os.remove("src/main/resources/template.mixin.json")
+def apply_template_or_remove(template_path, source_path_str, apply):
+    if apply:
+        apply_template(template_path, source_path_str)
+    else:
+        os.remove(template_path)
+
+apply_template("src/main/java/ExampleMod.template.java", "src/main/java/" + props["package"].replace(".", "/") + "/" + props["mainclass"] + ".java")
+
+enable_mixin = props["enable_mixin"].lower() == "true"
+apply_template_or_remove("src/main/java/ExampleMixin.template.java", "src/main/java/" + props["package"].replace(".", "/") + "/mixin/ExampleMixin.java", enable_mixin)
+apply_template_or_remove("src/main/resources/template.mixin.json", "src/main/resources/" + props["modid"] + ".mixin.json", enable_mixin)
 
 os.remove(sys.argv[0])
 os.remove("README.md")
