@@ -18,7 +18,10 @@ def apply_template(template_path, source_path_str):
     os.remove(template_path)
 
 apply_template("src/main/java/Template.java", "src/main/java/" + props["package"].replace(".", "/") + "/" + props["mainclass"] + ".java")
-apply_template("src/main/resources/template.mixin.json", "src/main/resources/" + props["modid"] + ".mixin.json")
+if props["enable_mixin"].lower() == "true":
+    apply_template("src/main/resources/template.mixin.json", "src/main/resources/" + props["modid"] + ".mixin.json")
+else:
+    os.remove("src/main/resources/template.mixin.json")
 
 os.remove(sys.argv[0])
 os.remove("README.md")
