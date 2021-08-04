@@ -31,3 +31,4 @@ apply_template_or_remove("src/main/resources/template.mixin.json", "src/main/res
 
 os.remove(sys.argv[0])
 os.remove("README.md")
+os.rename(".github.disabled", ".github")
