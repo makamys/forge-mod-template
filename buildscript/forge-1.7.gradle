@@ -57,10 +57,11 @@ jar {
 }
 
 processResources {
-    // This will ensure that this task is redone when the versions change.
-	// TODO make it run if any custom project property changes
+    // This will ensure that this task is redone when the versions or any
+	// user-defined properties change.
     inputs.property "version", version
     inputs.property "mcversion", project.minecraft.version
+	inputs.properties project.ext.getProperties()
 
     filesMatching('*.info') {
         expand project.properties
