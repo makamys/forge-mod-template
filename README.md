@@ -21,3 +21,6 @@ ForgeGradle 1.2 doesn't generate launch configurations for Eclipse. To get them,
 
 * CodeChickenLib is included in the dependencies, so you can get other non-deobfuscated mods running in your dev environment by putting them either in the `libs` directory you create inside this one (you'll have to run `./gradlew eclipse` (or `idea`)  again whenever you change that directory), or in the `mods` folder of your instance.
 * Once you're done, build your project with `./gradlew build`.
+
+## Credits
+This repo is a fork of https://github.com/anatawa12/ForgeGradle-example which itself is based on the [Forge 1.7.10 MDK](https://files.minecraftforge.net/net/minecraftforge/forge/index_1.7.10.html) -- this repo contains some code from both projects.
