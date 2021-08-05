@@ -3,7 +3,7 @@
 apply plugin: 'forge'
 
 group = project.group
-archivesBaseName = "${project.modid}-${project.minecraft_version}"
+archivesBaseName = "${project.archives_base}-${project.minecraft_version}"
 
 minecraft {
     version = "${project.minecraft_version}-${project.forge_version}"
