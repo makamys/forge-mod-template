@@ -2,6 +2,7 @@
 
 apply plugin: 'forge'
 
+project.version = new File("${projectDir}/publish/version.txt").getText('UTF-8')
 group = project.group
 archivesBaseName = "${project.archives_base}-${project.minecraft_version}"
 
