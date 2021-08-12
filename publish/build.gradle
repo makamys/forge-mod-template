@@ -33,7 +33,7 @@ if(githubOK){
 		targetCommitish "master" // by default this is set to "master"
 		releaseName "${project.releaseName} ${buildVersion}"
 		body changeLog // by default this is empty
-		draft true // by default this is false
+		draft false // by default this is false
 		prerelease false // by default this is false
 		releaseAssets getFiles() // this points to which files you want to upload as assets with your release
 
