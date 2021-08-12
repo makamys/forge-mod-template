@@ -4,7 +4,7 @@
 py ./prepare_publish.py
 
 # to build the release
-./gradlew cleanBuild
+./gradlew cleanBuildAll
 
 # to release
 ./gradlew githubRelease -PgithubToken=$GITHUB_TOKEN
