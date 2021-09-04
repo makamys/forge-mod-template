@@ -1,4 +1,5 @@
 import json
+import subprocess
 
 jsonPath = "../updatejson/update.json"
 
@@ -18,3 +19,7 @@ for gameVer in json.load(open("gameVersions.json", "r")).keys():
     data["promos"]["{}-latest".format(gameVer)] = modVer
 
 json.dump(data, open(jsonPath, "w", encoding="utf8"), indent=2)
+
+subprocess.run(["git", "add", jsonPath])
+subprocess.run(["git", "commit", "-m", "Update update json"])
+subprocess.run(["git", "push"])
