@@ -3,7 +3,7 @@
 apply plugin: 'forge'
 
 
-project.version = new File(project.multiproject_structure.toBoolean() ? "${projectDir}/../version.txt" : "${projectDir}/publish/version.txt").getText('UTF-8')
+project.version = new File(project.multiproject_structure.toBoolean() ? "${projectDir}/../version.txt" : "${projectDir}/publish/version.txt").getText('UTF-8').trim()
 
 group = project.group
 archivesBaseName = "${project.archives_base}-${project.minecraft_version}"
