@@ -43,13 +43,13 @@ jar {
 
     // embed libraries in jar
     from configurations.embed.collect {
-        exclude '**/LICENSE.txt'
+        exclude '**/LICENSE', '**/LICENSE.txt', 'META-INF', 'META-INF/**'
         it.isDirectory() ? it : zipTree(it)
     }
 	
 	configurations.shade.each { dep ->
         from(project.zipTree(dep)){
-            exclude 'META-INF', 'META-INF/**'
+            exclude '**/LICENSE', '**/LICENSE.txt', 'META-INF', 'META-INF/**'
         }
     }
 }
