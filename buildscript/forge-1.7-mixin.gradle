@@ -8,7 +8,9 @@ repositories {
 }
 
 dependencies {
-	embed 'org.spongepowered:mixin:0.7+'
+	embed('org.spongepowered:mixin:0.7+'){
+		setTransitive false
+	}
 }
 
 ext.outRefMapFile = "${tasks.compileJava.temporaryDir}/${project.modid}.mixin.refmap.json"
