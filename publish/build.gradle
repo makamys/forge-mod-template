@@ -9,7 +9,7 @@ import groovy.json.JsonSlurper
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
-def buildVersion = new File("${projectDir}/version.txt").getText('UTF-8')
+def buildVersion = new File("${projectDir}/version.txt").getText('UTF-8').trim()
 def changeLog = new File("${projectDir}/changelog.md").getText('UTF-8')
 def gameVersionsMap = new JsonSlurper().parseText(file("gameVersions.json").getText('UTF-8'))
 ext.gameVersions = gameVersionsMap.keySet()
