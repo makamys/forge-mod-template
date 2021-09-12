@@ -1,3 +1,8 @@
+if [ ! -s changelog.md ]; then
+    echo "Changelog is empty, refusing to publish."
+    exit 3
+fi
+
 if [[ $(git diff --cached --stat) != '' ]]
 then
 	echo "There are staged uncommitted changes, refusing to publish."
@@ -22,6 +27,7 @@ py prepare_publish.py
 ./gradlew githubRelease -PgithubToken=$GITHUB_TOKEN
 py update_updatejson.py
 ./curseforge_all.sh -PcurseToken=$CURSEFORGE_TOKEN
+/dev/null > changelog.md
 
 if [ -n "$MODRINTH_KEY" ]
 then
