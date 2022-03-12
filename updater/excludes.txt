@@ -1,0 +1,14 @@
+.git
+build
+src
+project.gradle
+init_project.py
+updater
+README.md
+.gradle
+.github.disabled
+publish/.gradle
+publish/changelog.md
+publish/gameVersions.txt
+publish/gameVersions.json
+publish/version.txt

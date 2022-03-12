@@ -2,6 +2,7 @@ from string import Template
 import os
 import sys
 from pathlib import Path
+import shutil
 
 props = dict([x.strip().split("=") for x in list(open("gradle.properties", "r", encoding="utf8")) if "=" in x])
 props["package"] = props["group"]
@@ -32,3 +33,4 @@ apply_template_or_remove("src/main/resources/template.mixin.json", "src/main/res
 os.remove(sys.argv[0])
 os.remove("README.md")
 os.rename(".github.disabled", ".github")
+shutil.rmtree("updater")
