@@ -4,5 +4,5 @@
 #
 # $1: The directory of the repo to update
 
-rsync -av . $1 --exclude-from='updater/excludes.txt' -n
-rsync -av .github.disabled/* $1/.github -n
+rsync -av . $1 --exclude-from='updater/excludes.txt'
+rsync -av .github.disabled/* $1/.github
