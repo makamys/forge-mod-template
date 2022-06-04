@@ -1,3 +1,4 @@
+project.gradle
 publish/changelog.md
 publish/gameVersions.txt
 publish/gameVersions.json

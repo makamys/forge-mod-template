@@ -1,7 +1,6 @@
 .git
 build
 src
-project.gradle
 init_project.py
 updater
 README.md
