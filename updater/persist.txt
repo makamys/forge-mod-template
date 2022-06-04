@@ -1,0 +1,4 @@
+publish/changelog.md
+publish/gameVersions.txt
+publish/gameVersions.json
+publish/version.txt

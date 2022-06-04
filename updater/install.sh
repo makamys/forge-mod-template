@@ -1,8 +1,10 @@
 # Run this from the root dir of this repo to update the buildscript in another
-# repo. It's highly recommended to clean the working and staging area before
-# doing this, so you can correct the changes.
+# repo, or install it in a new repo.
+# The recommended workflow is to have a clean working and staging area in the
+# target repo, so you easily correct the changes afterwards.
 #
-# $1: The directory of the repo to update
+# Example usage: ./updater/install.sh ~/SomeMod
 
-rsync -av . $1 --exclude-from='updater/excludes.txt'
+rsync -av . $1 --exclude-from='updater/excludes.txt' --exclude-from='updater/persist.txt'
+rsync -av . $1 --files-from='updater/persist.txt' --ignore-existing
 rsync -av .github.disabled/* $1/.github
