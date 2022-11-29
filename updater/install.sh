@@ -8,3 +8,6 @@
 rsync -av . $1 --exclude-from='updater/excludes.txt' --exclude-from='updater/persist.txt'
 rsync -av . $1 --files-from='updater/persist.txt' --ignore-existing
 rsync -av .github.disabled/* $1/.github
+
+(cd $1; git update-index --chmod=+x gradlew)
+(cd $1; git update-index --chmod=+x publish/gradlew)
