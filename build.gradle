@@ -23,13 +23,10 @@ buildscript {
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.ltgt.apt' version '0.10'
 }
 
 if(project.enable_lombok.toBoolean()) {
-
     dependencies {
-        apt 'org.projectlombok:lombok:1.18.4'
         compileOnly 'org.projectlombok:lombok:1.18.4'
     }
 }
