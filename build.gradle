@@ -13,7 +13,24 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.github.GTNewHorizons:ForgeGradle:1.2.11'
+        classpath('com.github.GTNewHorizons:ForgeGradle:1.2.11') {
+            // This transitive dependency breaks plugins for some reason. Only GTNH-FG has this issue.
+            exclude group: "org.eclipse.equinox"
+        }
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.ltgt.apt' version '0.10'
+}
+
+if(project.enable_lombok.toBoolean()) {
+
+    dependencies {
+        apt 'org.projectlombok:lombok:1.18.4'
+        compileOnly 'org.projectlombok:lombok:1.18.4'
     }
 }
 
